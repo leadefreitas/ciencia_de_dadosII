@@ -1,0 +1,193 @@
+---
+title: "Projeto Final da Disciplina Ciências de Dados II"
+author: Léa Amaral
+format: html
+editor: visual
+---
+
+# Casos de Síndrome Respiratória Aguda Grave em crianças menores de 2 anos no Brasil, 2019–2024
+
+## Introdução
+A Síndrome Respiratória Aguda Grave (SRAG) representa uma das principais causas de hospitalização e óbito em crianças menores de dois anos, especialmente em países de baixa e média renda¹. A pandemia de COVID-19 impactou profundamente o perfil epidemiológico da SRAG, alterando a circulação viral, a demanda hospitalar e as desigualdades regionais no acesso ao cuidado². Nesse contexto, este estudo tem como objetivo analisar a distribuição temporal dos casos de SRAG em crianças menores de dois anos no Brasil, no período de 2019 a 2024, bem como descrever a distribuição do tempo de internação segundo os principais vírus respiratórios (VSR, influenza A, influenza B, SARS-CoV-2, rinovírus e adenovírus).
+
+```{r setup, include=FALSE}
+## Lendo as bibliotecas e o banco
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(scales)
+library(plotly)
+library(ggpubr)
+
+bebes <- readRDS("bancobebes.rds")
+```
+
+## Metodologia
+Estudo descritivo utilizando dados secundários do sistema SIVEP-Gripe, referentes às hospitalizações por Síndrome Respiratória Aguda Grave (SRAG) em crianças menores de 2 anos no Brasil, no período de 2019 a 2024. Foram selecionados casos com identificação dos principais agentes etiológicos virais (adenovírus, influenza A, influenza B, rinovírus, SARS-CoV-2 e VSR) para as Figuras 2 e 3, enquanto, para a Figura 1, foram considerados todos os agentes etiológicos disponíveis. As análises incluíram a distribuição temporal dos casos e a distribuição do tempo de internação por vírus. Os dados foram processados no software R, com uso dos pacotes dplyr, tidyr e ggplot2, e visualizações interativas com plotly.
+
+## Resultados
+### Gráfico interativos
+
+Na figura 1, observa-se aumento no número de casos de SRAG em menores de 2 anos ao longo do período analisado. Em 2019, foram registrados 21.290 casos, com elevação para 41.794 em 2020, seguida de redução para 33.594 em 2021. A partir de 2022, verifica-se aumento expressivo, com aproximadamente 102.000 casos, mantendo-se em níveis elevados em 2023 (cerca de 99.000) e 2024 (cerca de 101.000 casos).
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Contar casos por ano
+casos_ano <- bebes %>%
+  count(ANO)
+
+#Plotar o gráfico
+grafico_ano <- ggplot(casos_ano, aes(x = ANO, y = n, group = 1)) +
+  geom_line(color = "darkblue", linewidth = 0.5) +
+  geom_point(size = 2, color = "darkblue") +
+  theme_light() +
+  scale_y_continuous(
+  labels = scales::label_number(big.mark = ".", decimal.mark = ",")
+)+
+  labs(
+    x = "Ano",
+    y = "Casos de SRAG",
+    title = "Figura 1 - Casos hospitalizados por SRAG em menores de 2 anos no Brasil, 2019–2024"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black")
+  )
+
+ggplotly(grafico_ano)
+```
+
+Na figura 2, observa-se que, em 2019, o VSR apresentou o maior número de casos (5.285), seguido por Influenza A (922), Adenovírus (638), Rinovírus (475) e Influenza B (270). Em 2020, houve redução dos casos para a maioria dos vírus, com destaque para o SARS-CoV-2 (4.283), que passou a apresentar maior frequência, enquanto o VSR reduziu para 1.218 casos. Em 2021, o VSR voltou a apresentar maior número de casos (4.506), seguido por SARS-CoV-2 (2.185) e Rinovírus (765), mantendo os demais vírus em níveis baixos. Em 2022, observou-se aumento expressivo, principalmente de VSR (16.082) e SARS-CoV-2 (10.362), além do crescimento do Rinovírus (4.600) e Adenovírus (2.571). Em 2023, o VSR manteve-se como principal agente (25.273), seguido por Rinovírus (7.620) e SARS-CoV-2 (5.091). Em 2024, houve novo aumento do VSR (29.248) e do Rinovírus (16.663), enquanto o SARS-CoV-2 apresentou redução (4.468); Influenza A (4.209), Adenovírus (3.694) e Influenza B (634) mantiveram valores inferiores aos principais agentes ao longo do período.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Renomeando os virus
+virus_labels <- c(
+  ADENOVIRUS   = "Adenovírus",
+  INFLUENZA_A  = "Influenza A",
+  INFLUENZA_B  = "Influenza B",
+  RINOVIRUS    = "Rinovírus",
+  SARS_COV_2   = "SARS-CoV-2",
+  VSR          = "VSR"
+)
+
+AGENTE_ETIOLOGICO <- c(
+  "ADENOVIRUS",
+  "INFLUENZA_A",
+  "INFLUENZA_B",
+  "RINOVIRUS",
+  "SARS_COV_2",
+  "VSR"
+)
+
+# Criando tabela com o numero de casos por virus e anos
+casos_virus <- bebes %>%
+  pivot_longer(all_of(AGENTE_ETIOLOGICO),
+               names_to = "virus") %>%
+  filter(value == 1) %>%
+  count(ANO, virus = recode(virus, !!!virus_labels), name = "casos")
+
+# Plotando o grafico
+grafico_virus <- ggplot(casos_virus,
+                        aes(ANO, casos, color = virus, group = virus)) +
+  geom_line(linewidth = 0.7) +
+  geom_point(
+    aes(text = paste0(
+      "<b>Ano:</b> ", ANO,
+      "<br><b>Casos:</b> ", scales::label_number(big.mark = ".", decimal.mark = ",")(casos),
+      "<br><b>Vírus:</b> ", virus
+    )),
+    size = 2
+  ) +
+  theme_light() +
+  scale_color_viridis_d(end = 0.9) +
+  scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ",")) +
+  labs(
+    x = "Ano",
+    y = "Casos de SRAG em menores de 2 anos",
+    color = "Vírus",
+    title = "Figura 2 - Casos hospitalizados por SRAG segundo vírus em\n menores de 2 anos no Brasil, 2019–2024"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    legend.position = "bottom"
+  )
+
+
+ggplotly(grafico_virus, tooltip = "text")
+```
+
+
+### Gráficos Avançados
+
+Já na figura 3, observa-se predominância de internações com duração de 3 a 6 dias para todos os vírus analisados, seguidas pelas faixas de 7 a 14 dias. As internações de até 2 dias e de 15 dias ou mais apresentam menores proporções, assim como os registros classificados como “Em branco/Ignorado”. O padrão de distribuição é semelhante entre os diferentes vírus.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+graf_tempointerna <- bebes %>%
+    pivot_longer(
+        cols = c(ADENOVIRUS, INFLUENZA_A, INFLUENZA_B, RINOVIRUS, SARS_COV_2, VSR),
+        names_to = "virus",
+        values_to = "valor"
+    ) %>%
+    filter(valor == 1) %>%
+    count(virus, TEMPO_INTERNA_CAT) %>%
+    group_by(virus) %>%
+    mutate(prop = n/sum(n)) %>%
+    ggplot(aes(x = virus, y = prop, fill = TEMPO_INTERNA_CAT)) +
+    geom_col(position = "fill") +
+    scale_fill_viridis_d() +
+    labs(
+        x = "Vírus",
+        y = "Proporção",
+        fill = "Tempo de internação",
+        title = "Figura 3 - Distribuição do tempo de internação por vírus"
+    ) +
+    theme_light() +
+    theme(
+    axis.text.x = element_text(angle = 10, hjust = 1)
+  )+
+  scale_x_discrete(labels = c(
+  ADENOVIRUS = "Adenovírus",
+  INFLUENZA_A = "Influenza A",
+  INFLUENZA_B = "Influenza B",
+  RINOVIRUS = "Rinovírus",
+  SARS_COV_2 = "SARS-CoV-2",
+  VSR = "VSR"
+))
+
+plot(graf_tempointerna)
+
+```
+
+## Discussão
+Os resultados evidenciam aumento expressivo dos casos de SRAG em crianças menores de 2 anos a partir de 2022, com manutenção em níveis elevados nos anos subsequentes. Esse comportamento ocorre em um contexto de mudanças na circulação de vírus respiratórios ao longo do período analisado, incluindo o período posterior à pandemia de COVID-19 e a implementação da imunização contra a COVID-19 na população pediátrica³⁻⁴. Observa-se ainda que o tempo de internação apresenta padrão semelhante entre os diferentes agentes etiológicos, com predominância de internações de curta duração (3 a 6 dias). Apesar disso, a ocorrência de internações prolongadas, ainda que em menor proporção, reforça a relevância clínica da SRAG nessa faixa etária⁵.
+
+## Conclusão
+Conclui-se que os casos de SRAG em crianças menores de 2 anos apresentaram aumento ao longo do período analisado, especialmente a partir de 2022, mantendo-se em níveis elevados nos anos mais recentes. O padrão de tempo de internação mostrou-se semelhante entre os principais vírus respiratórios, com predominância de internações de curta duração. Esses achados reforçam a relevância da SRAG como problema de saúde pública nessa faixa etária e destacam a importância do monitoramento contínuo dos vírus respiratórios, especialmente em contextos de mudanças no cenário epidemiológico.
+
+## Referência
+
+1. WORLD HEALTH ORGANIZATION (WHO). Pneumonia. Geneva: World Health Organization, 2022. Disponível em: https://data.unicef.org/topic/child-health/pneumonia/. Acesso em: 16 abr. 2026.
+
+2. BAGGIO, J. A. O. et al. Síndrome Respiratória Aguda Grave (SRAG) causada por COVID-19 no Brasil: análise dos casos hospitalizados. Revista Brasileira de Epidemiologia, São Paulo, v. 24, 2021. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC8682097/. Acesso em: 16 abr. 2026.
+
+3. BAMBERG, Eliza Lavall et al. Mudança no padrão de vírus respiratórios identificados em uma população pediátrica hospitalizada durante os anos de 2019 e 2020. Revista Médica de Minas Gerais, Belo Horizonte, v. 31, 2021. Disponível em: https://www.rmmg.org/artigo/detalhes/3848. Acesso em: 25 abr. 2026.
+
+4. FACULDADE DE MEDICINA DA UNIVERSIDADE DE SÃO PAULO. Primeira vacinação do público infantil no Brasil contra Covid-19 começou no HCFMUSP. São Paulo: FMUSP, 2022. Disponível em: https://www.fm.usp.br/fmusp/noticias/-primeira-vacinacao-do-publico-infantil-no-brasil-contra-covid-19--comecou-no-hcfmusp. Acesso em: 26 abr. 2026.
+
+5. FUNDAÇÃO OSWALDO CRUZ (FIOCRUZ). InfoGripe: casos de SRAG crescem em crianças menores de 2 anos. Rio de Janeiro: Fiocruz, 2026. Disponível em: https://agencia.fiocruz.br/infogripe-casos-de-srag-crescem-em-criancas-menores-de-2-ano. Acesso em: 26 abr. 2026.

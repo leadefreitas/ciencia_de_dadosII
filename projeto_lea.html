@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Léa Amaral">
+
+<title>Projeto Final da Disciplina Ciências de Dados II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="projeto_lea_files/libs/clipboard/clipboard.min.js"></script>
+<script src="projeto_lea_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="projeto_lea_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="projeto_lea_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="projeto_lea_files/libs/quarto-html/popper.min.js"></script>
+<script src="projeto_lea_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="projeto_lea_files/libs/quarto-html/anchor.min.js"></script>
+<link href="projeto_lea_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="projeto_lea_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="projeto_lea_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="projeto_lea_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="projeto_lea_files/libs/bootstrap/bootstrap-245adb5529f5e2c94d3c5a51932322a6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="projeto_lea_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="projeto_lea_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="projeto_lea_files/libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="projeto_lea_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="projeto_lea_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="projeto_lea_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="projeto_lea_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="projeto_lea_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="projeto_lea_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Projeto Final da Disciplina Ciências de Dados II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Léa Amaral </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="casos-de-síndrome-respiratória-aguda-grave-em-crianças-menores-de-2-anos-no-brasil-20192024" class="level1">
+<h1>Casos de Síndrome Respiratória Aguda Grave em crianças menores de 2 anos no Brasil, 2019–2024</h1>
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>A Síndrome Respiratória Aguda Grave (SRAG) representa uma das principais causas de hospitalização e óbito em crianças menores de dois anos, especialmente em países de baixa e média renda¹. A pandemia de COVID-19 impactou profundamente o perfil epidemiológico da SRAG, alterando a circulação viral, a demanda hospitalar e as desigualdades regionais no acesso ao cuidado². Nesse contexto, este estudo tem como objetivo analisar a distribuição temporal dos casos de SRAG em crianças menores de dois anos no Brasil, no período de 2019 a 2024, bem como descrever a distribuição do tempo de internação segundo os principais vírus respiratórios (VSR, influenza A, influenza B, SARS-CoV-2, rinovírus e adenovírus).</p>
+</section>
+<section id="metodologia" class="level2">
+<h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
+<p>Estudo descritivo utilizando dados secundários do sistema SIVEP-Gripe, referentes às hospitalizações por Síndrome Respiratória Aguda Grave (SRAG) em crianças menores de 2 anos no Brasil, no período de 2019 a 2024. Foram selecionados casos com identificação dos principais agentes etiológicos virais (adenovírus, influenza A, influenza B, rinovírus, SARS-CoV-2 e VSR) para as Figuras 2 e 3, enquanto, para a Figura 1, foram considerados todos os agentes etiológicos disponíveis. As análises incluíram a distribuição temporal dos casos e a distribuição do tempo de internação por vírus. Os dados foram processados no software R, com uso dos pacotes dplyr, tidyr e ggplot2, e visualizações interativas com plotly.</p>
+</section>
+<section id="resultados" class="level2">
+<h2 class="anchored" data-anchor-id="resultados">Resultados</h2>
+<section id="gráfico-interativos" class="level3">
+<h3 class="anchored" data-anchor-id="gráfico-interativos">Gráfico interativos</h3>
+<p>Na figura 1, observa-se aumento no número de casos de SRAG em menores de 2 anos ao longo do período analisado. Em 2019, foram registrados 21.290 casos, com elevação para 41.794 em 2020, seguida de redução para 33.594 em 2021. A partir de 2022, verifica-se aumento expressivo, com aproximadamente 102.000 casos, mantendo-se em níveis elevados em 2023 (cerca de 99.000) e 2024 (cerca de 101.000 casos).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-93e30b62055ba67821e7" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-93e30b62055ba67821e7">{"x":{"data":[{"x":[1,2,3,4,5,6],"y":[21290,41794,33594,101961,99475,101812],"text":["ANO: 2019<br />n:  21290","ANO: 2020<br />n:  41794","ANO: 2021<br />n:  33594","ANO: 2022<br />n: 101961","ANO: 2023<br />n:  99475","ANO: 2024<br />n: 101812"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(0,0,139,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,139,1)"}},"frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826491,"l":66.484018264840202},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"<b> Figura 1 - Casos hospitalizados por SRAG em menores de 2 anos no Brasil, 2019–2024 <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,6.5999999999999996],"tickmode":"array","ticktext":["2019","2020","2021","2022","2023","2024"],"tickvals":[1,2,3,3.9999999999999996,5,6],"categoryorder":"array","categoryarray":["2019","2020","2021","2022","2023","2024"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"y","title":{"text":"Ano","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17256.450000000001,105994.55],"tickmode":"array","ticktext":["20.000","40.000","60.000","80.000","100.000"],"tickvals":[20000,40000,60000,80000,100000],"categoryorder":"array","categoryarray":["20.000","40.000","60.000","80.000","100.000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"x","title":{"text":"Casos de SRAG","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(179,179,179,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"7d8e2e8adc44":{"x":{},"y":{},"type":"scatter"},"7d8e7cdc4be5":{"x":{},"y":{}}},"cur_data":"7d8e2e8adc44","visdat":{"7d8e2e8adc44":["function (y) ","x"],"7d8e7cdc4be5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Na figura 2, observa-se que, em 2019, o VSR apresentou o maior número de casos (5.285), seguido por Influenza A (922), Adenovírus (638), Rinovírus (475) e Influenza B (270). Em 2020, houve redução dos casos para a maioria dos vírus, com destaque para o SARS-CoV-2 (4.283), que passou a apresentar maior frequência, enquanto o VSR reduziu para 1.218 casos. Em 2021, o VSR voltou a apresentar maior número de casos (4.506), seguido por SARS-CoV-2 (2.185) e Rinovírus (765), mantendo os demais vírus em níveis baixos. Em 2022, observou-se aumento expressivo, principalmente de VSR (16.082) e SARS-CoV-2 (10.362), além do crescimento do Rinovírus (4.600) e Adenovírus (2.571). Em 2023, o VSR manteve-se como principal agente (25.273), seguido por Rinovírus (7.620) e SARS-CoV-2 (5.091). Em 2024, houve novo aumento do VSR (29.248) e do Rinovírus (16.663), enquanto o SARS-CoV-2 apresentou redução (4.468); Influenza A (4.209), Adenovírus (3.694) e Influenza B (634) mantiveram valores inferiores aos principais agentes ao longo do período.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-05e31c6ffd365f3858ae" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-05e31c6ffd365f3858ae">{"x":{"data":[{"x":[1,2,3,4,5,6],"y":[638,245,232,2571,1975,3694],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"Adenovírus","legendgroup":"Adenovírus","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[922,219,375,1578,1635,4209],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(67,62,133,1)","dash":"solid"},"hoveron":"points","name":"Influenza A","legendgroup":"Influenza A","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[270,113,6,131,1298,634],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(46,111,142,1)","dash":"solid"},"hoveron":"points","name":"Influenza B","legendgroup":"Influenza B","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[475,692,765,4600,7620,16663],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(31,154,138,1)","dash":"solid"},"hoveron":"points","name":"Rinovírus","legendgroup":"Rinovírus","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,3,4,5,6],"y":[4283,2185,10362,5091,4468],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(77,195,107,1)","dash":"solid"},"hoveron":"points","name":"SARS-CoV-2","legendgroup":"SARS-CoV-2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[5285,1218,4506,16082,25273,29248],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(187,223,39,1)","dash":"solid"},"hoveron":"points","name":"VSR","legendgroup":"VSR","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[638,245,232,2571,1975,3694],"text":["<b>Ano:<\/b> 2019<br><b>Casos:<\/b> 638<br><b>Vírus:<\/b> Adenovírus","<b>Ano:<\/b> 2020<br><b>Casos:<\/b> 245<br><b>Vírus:<\/b> Adenovírus","<b>Ano:<\/b> 2021<br><b>Casos:<\/b> 232<br><b>Vírus:<\/b> Adenovírus","<b>Ano:<\/b> 2022<br><b>Casos:<\/b> 2.571<br><b>Vírus:<\/b> Adenovírus","<b>Ano:<\/b> 2023<br><b>Casos:<\/b> 1.975<br><b>Vírus:<\/b> Adenovírus","<b>Ano:<\/b> 2024<br><b>Casos:<\/b> 3.694<br><b>Vírus:<\/b> Adenovírus"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(68,1,84,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(68,1,84,1)"}},"hoveron":"points","name":"Adenovírus","legendgroup":"Adenovírus","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[922,219,375,1578,1635,4209],"text":["<b>Ano:<\/b> 2019<br><b>Casos:<\/b> 922<br><b>Vírus:<\/b> Influenza A","<b>Ano:<\/b> 2020<br><b>Casos:<\/b> 219<br><b>Vírus:<\/b> Influenza A","<b>Ano:<\/b> 2021<br><b>Casos:<\/b> 375<br><b>Vírus:<\/b> Influenza A","<b>Ano:<\/b> 2022<br><b>Casos:<\/b> 1.578<br><b>Vírus:<\/b> Influenza A","<b>Ano:<\/b> 2023<br><b>Casos:<\/b> 1.635<br><b>Vírus:<\/b> Influenza A","<b>Ano:<\/b> 2024<br><b>Casos:<\/b> 4.209<br><b>Vírus:<\/b> Influenza A"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(67,62,133,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(67,62,133,1)"}},"hoveron":"points","name":"Influenza A","legendgroup":"Influenza A","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[270,113,6,131,1298,634],"text":["<b>Ano:<\/b> 2019<br><b>Casos:<\/b> 270<br><b>Vírus:<\/b> Influenza B","<b>Ano:<\/b> 2020<br><b>Casos:<\/b> 113<br><b>Vírus:<\/b> Influenza B","<b>Ano:<\/b> 2021<br><b>Casos:<\/b> 6<br><b>Vírus:<\/b> Influenza B","<b>Ano:<\/b> 2022<br><b>Casos:<\/b> 131<br><b>Vírus:<\/b> Influenza B","<b>Ano:<\/b> 2023<br><b>Casos:<\/b> 1.298<br><b>Vírus:<\/b> Influenza B","<b>Ano:<\/b> 2024<br><b>Casos:<\/b> 634<br><b>Vírus:<\/b> Influenza B"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(46,111,142,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(46,111,142,1)"}},"hoveron":"points","name":"Influenza B","legendgroup":"Influenza B","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[475,692,765,4600,7620,16663],"text":["<b>Ano:<\/b> 2019<br><b>Casos:<\/b> 475<br><b>Vírus:<\/b> Rinovírus","<b>Ano:<\/b> 2020<br><b>Casos:<\/b> 692<br><b>Vírus:<\/b> Rinovírus","<b>Ano:<\/b> 2021<br><b>Casos:<\/b> 765<br><b>Vírus:<\/b> Rinovírus","<b>Ano:<\/b> 2022<br><b>Casos:<\/b> 4.600<br><b>Vírus:<\/b> Rinovírus","<b>Ano:<\/b> 2023<br><b>Casos:<\/b> 7.620<br><b>Vírus:<\/b> Rinovírus","<b>Ano:<\/b> 2024<br><b>Casos:<\/b> 16.663<br><b>Vírus:<\/b> Rinovírus"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(31,154,138,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(31,154,138,1)"}},"hoveron":"points","name":"Rinovírus","legendgroup":"Rinovírus","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,3,4,5,6],"y":[4283,2185,10362,5091,4468],"text":["<b>Ano:<\/b> 2020<br><b>Casos:<\/b> 4.283<br><b>Vírus:<\/b> SARS-CoV-2","<b>Ano:<\/b> 2021<br><b>Casos:<\/b> 2.185<br><b>Vírus:<\/b> SARS-CoV-2","<b>Ano:<\/b> 2022<br><b>Casos:<\/b> 10.362<br><b>Vírus:<\/b> SARS-CoV-2","<b>Ano:<\/b> 2023<br><b>Casos:<\/b> 5.091<br><b>Vírus:<\/b> SARS-CoV-2","<b>Ano:<\/b> 2024<br><b>Casos:<\/b> 4.468<br><b>Vírus:<\/b> SARS-CoV-2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,195,107,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(77,195,107,1)"}},"hoveron":"points","name":"SARS-CoV-2","legendgroup":"SARS-CoV-2","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6],"y":[5285,1218,4506,16082,25273,29248],"text":["<b>Ano:<\/b> 2019<br><b>Casos:<\/b> 5.285<br><b>Vírus:<\/b> VSR","<b>Ano:<\/b> 2020<br><b>Casos:<\/b> 1.218<br><b>Vírus:<\/b> VSR","<b>Ano:<\/b> 2021<br><b>Casos:<\/b> 4.506<br><b>Vírus:<\/b> VSR","<b>Ano:<\/b> 2022<br><b>Casos:<\/b> 16.082<br><b>Vírus:<\/b> VSR","<b>Ano:<\/b> 2023<br><b>Casos:<\/b> 25.273<br><b>Vírus:<\/b> VSR","<b>Ano:<\/b> 2024<br><b>Casos:<\/b> 29.248<br><b>Vírus:<\/b> VSR"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(187,223,39,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(187,223,39,1)"}},"hoveron":"points","name":"VSR","legendgroup":"VSR","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826491,"l":60.639269406392714},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"<b> Figura 2 - Casos hospitalizados por SRAG segundo vírus em<br /> menores de 2 anos no Brasil, 2019–2024 <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,6.5999999999999996],"tickmode":"array","ticktext":["2019","2020","2021","2022","2023","2024"],"tickvals":[1,2,3,3.9999999999999996,5,6],"categoryorder":"array","categoryarray":["2019","2020","2021","2022","2023","2024"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"y","title":{"text":"Ano","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1456.1000000000001,30710.099999999999],"tickmode":"array","ticktext":["0","10.000","20.000","30.000"],"tickvals":[0,10000,20000,30000],"categoryorder":"array","categoryarray":["0","10.000","20.000","30.000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"x","title":{"text":"Casos de SRAG em menores de 2 anos","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(179,179,179,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Vírus","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"7d8e7467a3ed":{"x":{},"y":{},"colour":{},"type":"scatter"},"7d8e6ca65ce8":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"7d8e7467a3ed","visdat":{"7d8e7467a3ed":["function (y) ","x"],"7d8e6ca65ce8":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="gráficos-avançados" class="level3">
+<h3 class="anchored" data-anchor-id="gráficos-avançados">Gráficos Avançados</h3>
+<p>Já na figura 3, observa-se predominância de internações com duração de 3 a 6 dias para todos os vírus analisados, seguidas pelas faixas de 7 a 14 dias. As internações de até 2 dias e de 15 dias ou mais apresentam menores proporções, assim como os registros classificados como “Em branco/Ignorado”. O padrão de distribuição é semelhante entre os diferentes vírus.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="projeto_lea_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="discussão" class="level2">
+<h2 class="anchored" data-anchor-id="discussão">Discussão</h2>
+<p>Os resultados evidenciam aumento expressivo dos casos de SRAG em crianças menores de 2 anos a partir de 2022, com manutenção em níveis elevados nos anos subsequentes. Esse comportamento ocorre em um contexto de mudanças na circulação de vírus respiratórios ao longo do período analisado, incluindo o período posterior à pandemia de COVID-19 e a implementação da imunização contra a COVID-19 na população pediátrica³⁻⁴. Observa-se ainda que o tempo de internação apresenta padrão semelhante entre os diferentes agentes etiológicos, com predominância de internações de curta duração (3 a 6 dias). Apesar disso, a ocorrência de internações prolongadas, ainda que em menor proporção, reforça a relevância clínica da SRAG nessa faixa etária⁵.</p>
+</section>
+<section id="conclusão" class="level2">
+<h2 class="anchored" data-anchor-id="conclusão">Conclusão</h2>
+<p>Conclui-se que os casos de SRAG em crianças menores de 2 anos apresentaram aumento ao longo do período analisado, especialmente a partir de 2022, mantendo-se em níveis elevados nos anos mais recentes. O padrão de tempo de internação mostrou-se semelhante entre os principais vírus respiratórios, com predominância de internações de curta duração. Esses achados reforçam a relevância da SRAG como problema de saúde pública nessa faixa etária e destacam a importância do monitoramento contínuo dos vírus respiratórios, especialmente em contextos de mudanças no cenário epidemiológico.</p>
+</section>
+<section id="referência" class="level2">
+<h2 class="anchored" data-anchor-id="referência">Referência</h2>
+<ol type="1">
+<li><p>WORLD HEALTH ORGANIZATION (WHO). Pneumonia. Geneva: World Health Organization, 2022. Disponível em: https://data.unicef.org/topic/child-health/pneumonia/. Acesso em: 16 abr. 2026.</p></li>
+<li><p>BAGGIO, J. A. O. et al.&nbsp;Síndrome Respiratória Aguda Grave (SRAG) causada por COVID-19 no Brasil: análise dos casos hospitalizados. Revista Brasileira de Epidemiologia, São Paulo, v. 24, 2021. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC8682097/. Acesso em: 16 abr. 2026.</p></li>
+<li><p>BAMBERG, Eliza Lavall et al.&nbsp;Mudança no padrão de vírus respiratórios identificados em uma população pediátrica hospitalizada durante os anos de 2019 e 2020. Revista Médica de Minas Gerais, Belo Horizonte, v. 31, 2021. Disponível em: https://www.rmmg.org/artigo/detalhes/3848. Acesso em: 25 abr. 2026.</p></li>
+<li><p>FACULDADE DE MEDICINA DA UNIVERSIDADE DE SÃO PAULO. Primeira vacinação do público infantil no Brasil contra Covid-19 começou no HCFMUSP. São Paulo: FMUSP, 2022. Disponível em: https://www.fm.usp.br/fmusp/noticias/-primeira-vacinacao-do-publico-infantil-no-brasil-contra-covid-19–comecou-no-hcfmusp. Acesso em: 26 abr. 2026.</p></li>
+<li><p>FUNDAÇÃO OSWALDO CRUZ (FIOCRUZ). InfoGripe: casos de SRAG crescem em crianças menores de 2 anos. Rio de Janeiro: Fiocruz, 2026. Disponível em: https://agencia.fiocruz.br/infogripe-casos-de-srag-crescem-em-criancas-menores-de-2-ano. Acesso em: 26 abr. 2026.</p></li>
+</ol>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
